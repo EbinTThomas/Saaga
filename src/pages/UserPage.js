@@ -35,10 +35,11 @@ import USERLIST from '../_mock/user';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+  { id: 'ktu_id', label: 'KTU ID', alignRight: false },
+  { id: 'gender', label: 'Gender', alignRight: false },
+  { id: 'mobile', label: 'Mobile', alignRight: false },
+  { id: 'accomodation', label: 'Accomodation', alignRight: false },
+  {id:'dates',label:"Dates",alignRight:false},
   { id: '' },
 ];
 
@@ -149,7 +150,7 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> Technical | Participants </title>
+        <title> Participants </title>
       </Helmet>
 
       <Container>
