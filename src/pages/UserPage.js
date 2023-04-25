@@ -23,6 +23,7 @@ import {
   TablePagination,
 } from '@mui/material';
 // components
+import { Link } from 'react-router-dom';
 import Label from '../components/label';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
@@ -30,7 +31,7 @@ import Scrollbar from '../components/scrollbar';
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
 // mock
 import USERLIST from '../_mock/user';
-import { Link } from 'react-router-dom';
+
 
 // ----------------------------------------------------------------------
 
