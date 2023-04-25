@@ -28,7 +28,7 @@ export default function CulturalPage() {
 
       <Container>
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Technical Events
+          Cultural Events
         </Typography>
 
         <ProductList products={PRODUCTS} />

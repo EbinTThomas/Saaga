@@ -10,6 +10,7 @@ import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
 import TechnicalPage from './pages/TechnicalPage';
 import CulturalPage from './pages/CulturalPage';
+import RegistrationPage from './pages/RegistrationPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 
 // ----------------------------------------------------------------------
@@ -26,6 +27,7 @@ export default function Router() {
         { path: 'products', element: <ProductsPage /> },
         { path: 'technical', element: <TechnicalPage /> },
         { path: 'cultural', element: <CulturalPage /> },
+        { path: 'register', element: <RegistrationPage /> },
         { path: 'blog', element: <BlogPage /> },
       ],
     },
