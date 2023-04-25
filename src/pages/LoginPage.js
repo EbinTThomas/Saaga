@@ -10,7 +10,7 @@ import Iconify from '../components/iconify';
 // sections
 import { LoginForm } from '../sections/auth/login';
 
-// ----------------------------------------------------------------------
+const LOGIN_URL = '/auth/token/login/'
 
 const StyledRoot = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('md')]: {

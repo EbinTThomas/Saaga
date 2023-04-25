@@ -15,8 +15,8 @@ export default function ProductList({ products, ...other }) {
     <Grid container spacing={3} {...other}>
       {products.map((product) => (
           <Grid key={product.id} item xs={12} sm={6} md={3}>
-            <Link to='../user'>
-            <ShopProductCard product={product} />
+            <Link to='../technical-participants'>
+              <ShopProductCard product={product} />
             </Link>
             
           </Grid>

@@ -2,16 +2,16 @@ import { Navigate, useRoutes } from 'react-router-dom';
 // layouts
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
-//
-import BlogPage from './pages/BlogPage';
+
 import UserPage from './pages/UserPage';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
-import ProductsPage from './pages/ProductsPage';
 import TechnicalPage from './pages/TechnicalPage';
 import CulturalPage from './pages/CulturalPage';
 import RegistrationPage from './pages/RegistrationPage1';
 import DashboardAppPage from './pages/DashboardAppPage';
+import TechnicalParticipants from './pages/TechnicalParticipants';
+import ExpoPage from './pages/ExpoPage';
 
 // ----------------------------------------------------------------------
 
@@ -24,11 +24,11 @@ export default function Router() {
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <UserPage /> },
-        { path: 'products', element: <ProductsPage /> },
         { path: 'technical', element: <TechnicalPage /> },
         { path: 'cultural', element: <CulturalPage /> },
+        { path: 'expo', element: <ExpoPage /> },
+        { path: 'technical-participants', element: <TechnicalParticipants /> },
         { path: 'register', element: <RegistrationPage /> },
-        { path: 'blog', element: <BlogPage /> },
       ],
     },
     {

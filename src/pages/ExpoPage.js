@@ -5,9 +5,9 @@ import { Container, Stack, Typography } from '@mui/material';
 import axios from '../services/api/axios';
 import { ProductList } from '../sections/@dashboard/products';
 
-const EVENTS_URL = '/event/technical/'
+const EVENTS_URL = '/event/expo/'
 
-export default function TechnicalPage() {
+export default function ExpoPage() {
   const [openFilter, setOpenFilter] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [events, setEvents] = useState([]);
@@ -38,12 +38,12 @@ export default function TechnicalPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard: Technical Events </title>
+        <title> Dashboard: Expo Events </title>
       </Helmet>
 
       <Container>
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Technical Events
+          Expo Events
         </Typography>
 
         <ProductList products={events} />

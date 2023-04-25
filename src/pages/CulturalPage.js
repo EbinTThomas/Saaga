@@ -1,16 +1,18 @@
 import { Helmet } from 'react-helmet-async';
-import { useState } from 'react';
-// @mui
+import { useEffect, useState } from 'react';
 import { Container, Stack, Typography } from '@mui/material';
-// components
-import { ProductSort, ProductList, ProductCartWidget, ProductFilterSidebar } from '../sections/@dashboard/products';
-// mock
-import PRODUCTS from '../_mock/products';
+// import useAxiosPrivate from '../services/hooks/useAxiosPrivate';
+import axios from '../services/api/axios';
+import { ProductList } from '../sections/@dashboard/products';
 
-// ----------------------------------------------------------------------
+const EVENTS_URL = '/event/cultural/'
 
 export default function CulturalPage() {
   const [openFilter, setOpenFilter] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [events, setEvents] = useState([]);
+  const [errMsg, setErrMsg] = useState('');
+  // const axiosPrivate = useAxiosPrivate()
 
   const handleOpenFilter = () => {
     setOpenFilter(true);
@@ -19,6 +21,19 @@ export default function CulturalPage() {
   const handleCloseFilter = () => {
     setOpenFilter(false);
   };
+
+  useEffect(() => {
+    axios
+      .get(EVENTS_URL)
+      .then((response) => {
+        setEvents(response.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setErrMsg(err);
+        setIsLoading(false);
+      });
+  }, []);
 
   return (
     <>
@@ -31,7 +46,7 @@ export default function CulturalPage() {
           Cultural Events
         </Typography>
 
-        <ProductList products={PRODUCTS} />
+        <ProductList products={events} />
       </Container>
     </>
   );
