@@ -95,8 +95,8 @@ function StudentForm() {
               onChange={(e) => handleAccommodationChange(e, index)}
               multiple
             >
-              <option value="1">Hostel 1</option>
-              <option value="2">Hostel 2</option>
+              <option value="1">Day 1</option>
+              <option value="2">Day 2</option>
             </select>
           </label>
           {index === students.length - 1 && (
