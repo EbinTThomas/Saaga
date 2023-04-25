@@ -18,12 +18,12 @@ const navConfig = [
   // },
   {
     title: 'technical events',
-    path: '/dashboard/products',
+    path: '/dashboard/technical',
     icon: icon('ic_cart'),
   },
   {
     title: 'cultural events',
-    path: '/dashboard/blog',
+    path: '/dashboard/cultural',
     icon: icon('ic_blog'),
   },
   // {

@@ -8,6 +8,8 @@ import UserPage from './pages/UserPage';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
+import TechnicalPage from './pages/TechnicalPage';
+import CulturalPage from './pages/CulturalPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 
 // ----------------------------------------------------------------------
@@ -22,6 +24,8 @@ export default function Router() {
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <UserPage /> },
         { path: 'products', element: <ProductsPage /> },
+        { path: 'technical', element: <TechnicalPage /> },
+        { path: 'cultural', element: <CulturalPage /> },
         { path: 'blog', element: <BlogPage /> },
       ],
     },
