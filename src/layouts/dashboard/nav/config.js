@@ -26,6 +26,11 @@ const navConfig = [
     path: '/dashboard/cultural',
     icon: icon('ic_blog'),
   },
+  {
+    title: 'expo',
+    path: '/dashboard/expo',
+    icon: icon('ic_blog'),
+  },
   // {
   //   title: 'login',
   //   path: '/login',
