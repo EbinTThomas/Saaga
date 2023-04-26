@@ -51,7 +51,7 @@ export default function ShopProductCard({ product }) {
         </Typography>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <button className="btn-dark">View Participants</button>
+          <button className="btn-dark">Register here</button>
         </Stack>
       </Stack>
     </Card>

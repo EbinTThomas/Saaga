@@ -7,7 +7,7 @@ function RegistrationPage1() {
   const { id } = useParams();
 
   const [students, setStudents] = useState([
-    { name: '', ktu_id: '', college: '', gender: '', phone: '', accommodation1: false, accommodation2: false },
+    { name: '', ktu_id: '', gender: '', phone: '', accommodation1: false, accommodation2: false },
   ]);
 
   const handleInputChange = (e, index) => {
@@ -24,7 +24,7 @@ function RegistrationPage1() {
   const handleAddStudent = () => {
     setStudents([
       ...students,
-      { name: '', ktu_id: '', college: '', gender: '', phone: '', accommodation1: false, accommodation2: false },
+      { name: '', ktu_id: '', gender: '', phone: '', accommodation1: false, accommodation2: false },
     ]);
   };
 
@@ -53,7 +53,6 @@ function RegistrationPage1() {
           <tr>
             <th>Name</th>
             <th>KTU Id</th>
-            <th>College</th>
             <th>Gender</th>
             <th>Phone</th>
             <th>Accommodation</th>
@@ -78,16 +77,6 @@ function RegistrationPage1() {
                   id={`ktu_id-${index}`}
                   name="ktu_id"
                   value={student.ktu_id}
-                  onChange={(e) => handleInputChange(e, index)}
-                  required
-                />
-              </td>
-              <td htmlFor={`college-${index}`}>
-                <input
-                  type="text"
-                  id={`college-${index}`}
-                  name="college"
-                  value={student.college}
                   onChange={(e) => handleInputChange(e, index)}
                   required
                 />
