@@ -157,7 +157,7 @@ function RegistrationPage() {
                 </label>
               </td>
               <td>
-                <button onClick={handleRemoveStudent} className="btn-danger">
+                <button onClick={(e) => handleRemoveStudent(index)} className="btn-danger">
                   Remove
                 </button>
               </td>
