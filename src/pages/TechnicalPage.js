@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
 import { Container, Stack, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 // import useAxiosPrivate from '../services/hooks/useAxiosPrivate';
 import axios from '../services/api/axios';
 import { ProductList } from '../sections/@dashboard/products';
@@ -22,9 +23,19 @@ export default function TechnicalPage() {
     setOpenFilter(false);
   };
 
+  const navigator = useNavigate()
+
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token == null){
+      navigator('/login')
+    }
+    const headers = {
+      Authorization: `Token ${token}`
+    };
+
     axios
-      .get(EVENTS_URL)
+      .get(EVENTS_URL, { headers })
       .then((response) => {
         setEvents(response.data);
         setIsLoading(false);
