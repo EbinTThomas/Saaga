@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Container, Stack, Typography } from '@mui/material';
 // import useAxiosPrivate from '../services/hooks/useAxiosPrivate';
@@ -21,6 +22,19 @@ export default function CulturalPage() {
   const handleCloseFilter = () => {
     setOpenFilter(false);
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    console.log(isAuthenticated)
+    if (isAuthenticated === 'false') {
+      navigate(
+        '/login',
+        { replace: true },
+      )
+    }
+  }, [])
 
   useEffect(() => {
     axios
