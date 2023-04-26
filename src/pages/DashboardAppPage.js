@@ -29,7 +29,7 @@ export default function DashboardAppPage() {
 
   useEffect(() => {
     const isAuthenticated = localStorage.getItem('isAuthenticated');
-    if (isAuthenticated === 'false') {
+    if (isAuthenticated === 'false' || isAuthenticated===null) {
       navigate(
         '/login',
         { replace: true },
@@ -40,7 +40,7 @@ export default function DashboardAppPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard | Overwiew </title>
+        <title> Dashboard | Overview </title>
       </Helmet>
 
       <Container maxWidth="xl">
