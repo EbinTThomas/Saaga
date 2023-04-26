@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
 import { Container, Stack, Typography } from '@mui/material';
-// import useAxiosPrivate from '../services/hooks/useAxiosPrivate';
+import useAxiosPrivate from '../services/hooks/useAxiosPrivate';
 import axios from '../services/api/axios';
 import { ProductList } from '../sections/@dashboard/products';
 
@@ -12,7 +12,7 @@ export default function TechnicalPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [events, setEvents] = useState([]);
   const [errMsg, setErrMsg] = useState('');
-  // const axiosPrivate = useAxiosPrivate()
+  const axiosPrivate = useAxiosPrivate()
 
   const handleOpenFilter = () => {
     setOpenFilter(true);
@@ -23,7 +23,7 @@ export default function TechnicalPage() {
   };
 
   useEffect(() => {
-    axios
+    axiosPrivate
       .get(EVENTS_URL)
       .then((response) => {
         setEvents(response.data);
