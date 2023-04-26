@@ -27,8 +27,8 @@ export default function Router() {
         { path: 'technical', element: <TechnicalPage /> },
         { path: 'cultural', element: <CulturalPage /> },
         { path: 'expo', element: <ExpoPage /> },
-        { path: 'technical-participants', element: <TechnicalParticipants /> },
-        { path: 'register', element: <RegistrationPage /> },
+        { path: 'technical-participants/:id', element: <TechnicalParticipants /> },
+        { path: 'register/:id', element: <RegistrationPage /> },
       ],
     },
     {

@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 // @mui
 import {
@@ -24,7 +25,6 @@ import {
   TablePagination,
 } from '@mui/material';
 // components
-import { Link } from 'react-router-dom';
 import Label from '../components/label';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
@@ -77,9 +77,8 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-const TECH_PARTICIPANTS_URL = '/tech-events/participants/'
-
 export default function TechnicalParticipants() {
+  const { id } = useParams();
   const [open, setOpen] = useState(null);
 
   const [page, setPage] = useState(0);
@@ -158,7 +157,11 @@ export default function TechnicalParticipants() {
 
   useEffect(() => {
     axios
-      .get(TECH_PARTICIPANTS_URL)
+      .get(`event/${id}`,
+        {
+          headers: {Authorization: `Token ${localStorage.getItem('access')}`}
+        }
+      )
       .then((response) => {
         setUSERLIST(response.data);
         setIsLoading(false);
@@ -192,7 +195,7 @@ export default function TechnicalParticipants() {
             Participants
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            <Link to={'/dashboard/register'} style={{
+            <Link to={`/dashboard/register/${id}`} style={{
               textDecoration: "none",
               color: "white"
             }}>New Registration</Link>
