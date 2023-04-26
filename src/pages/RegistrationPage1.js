@@ -32,7 +32,7 @@ function RegistrationPage1() {
     e.preventDefault();
     const url = `/event/${id}/`;
     axios
-      .post(url, JSON.stringify(students), {
+      .post(url, students, {
         headers: { Authorization: `Token ${localStorage.getItem('access')}` },
       })
       .then((res) => {

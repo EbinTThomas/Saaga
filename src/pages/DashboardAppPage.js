@@ -29,7 +29,6 @@ export default function DashboardAppPage() {
 
   useEffect(() => {
     const isAuthenticated = localStorage.getItem('isAuthenticated');
-    console.log(isAuthenticated)
     if (isAuthenticated === 'false') {
       navigate(
         '/login',
