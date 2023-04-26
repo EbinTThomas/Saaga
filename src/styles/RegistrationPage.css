@@ -26,29 +26,33 @@ th, td {
   padding: 1rem;
   border-bottom: 1px solid #ddd;
   font-weight: 500 !important;
+  font-size: 14px;
 }
 
 th {
   background-color: #f2f2f2;
   font-weight: bold;
+  font-size: 14px;
 }
 
-input[type="text"], select {
+td input[type="text"], select {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: none;
   margin-bottom: 0.5rem;
+  font-size: 14px;
 }
 
-input[type="tel"] {
+td input[type="tel"] {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: none;
   margin-bottom: 0.5rem;
+  font-size: 14px;
 }
 
 label {
@@ -64,6 +68,7 @@ button {
   padding: 0.5rem 1rem;
   margin-top: 1rem;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .btn-outline {
@@ -105,4 +110,30 @@ button {
 .btn-danger {
   background-color: red;
   color: white;
+}
+
+.successMsg {
+  max-width: 250px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  background-color: #28a746b1;
+  color: #fff;
+  border: 1px solid #28a745;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.offscreen {
+  display: none;
+}
+
+.errMsg {
+  max-width: 250px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  background-color: #dc3546b1;
+  color: #fff;
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  font-size: 14px;
 }
