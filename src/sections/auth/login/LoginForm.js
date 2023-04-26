@@ -27,7 +27,7 @@ export default function LoginForm() {
   const isAuthenticated = localStorage.getItem('isAuthenticated');
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated==='true') {
       navigate(from, { replace: true })
     }
     usernameRef.current.focus()
