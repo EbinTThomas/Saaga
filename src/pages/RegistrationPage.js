@@ -12,7 +12,6 @@ function RegistrationPage() {
 
   const [successMsg, setSuccessMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
-  // const [isFormValid, setIsFormValid] = useState(false);
 
   const handleInputChange = (e, index) => {
     const { name, value, type, checked } = e.target;
@@ -46,35 +45,34 @@ function RegistrationPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSuccessMsg('')
-    setErrMsg('')
-    // setIsFormValid(true)
-    // students.forEach((student) => {
-    //   if (student.name==='' || student.ktu_id==='' || student.gender==='' || student.phone==='') {
-    //     setIsFormValid(false);
-    //   } else {
-    //     setIsFormValid(true)
-    //   }
-    // });
-    // if (isFormValid) {
+    if (validateForm()) {
       const url = `/event/${id}/`;
       axios
         .post(url, students, {
           headers: { Authorization: `Token ${localStorage.getItem('access')}` },
         })
         .then((res) => {
-          // console.log(res.data);
           setStudents([{ name: '', ktu_id: '', gender: '', phone: '', accommodation1: false, accommodation2: false }]);
           setSuccessMsg('Registered Successfully!');
         })
         .catch((err) => setErrMsg(`Couldn't Register!`));
-    // } else {
-    //   setErrMsg('All fields are required!')
-    // }
+    } else {
+      setErrMsg('All fields are required!');
+    }
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+    students.forEach((student) => {
+      if (student.name === '' || student.ktu_id === '' || student.gender === '' || student.phone === '') {
+        isValid = false;
+      }
+    });
+    return isValid;
   };
   return (
     <div className="table-container">
-      <div className={successMsg ? 'successMsg' : 'offscreen'}>{successMsg}</div>
+      <div className={successMsg && !errMsg ? 'successMsg' : 'offscreen'}>{successMsg}</div>
       <div className={errMsg ? 'errMsg' : 'offscreen'}>{errMsg}</div>
       <table>
         <tbody>
