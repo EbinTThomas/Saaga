@@ -27,7 +27,7 @@ export default function TechnicalPage() {
   useEffect(() => {
     const isAuthenticated = localStorage.getItem('isAuthenticated');
     console.log(isAuthenticated)
-    if (isAuthenticated === 'false') {
+    if (isAuthenticated === 'false' || isAuthenticated===null) {
       navigate(
         '/login',
         { replace: true },
