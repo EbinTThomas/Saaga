@@ -1,9 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* RegistrationPage.css */
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Table styles */
 .table-container {
-  overflow: scroll;
+  margin: 2rem auto;
+  /* max-width: 1000px; */
 }
 
 table {
+  border-collapse: collapse;
   width: 100%;
-  background-color: #fff;
-  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  font-weight: 500 !important;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+input[type="text"], select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: none;
+  margin-bottom: 0.5rem;
+}
+
+input[type="tel"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: none;
+  margin-bottom: 0.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+button {
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.btn-outline:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-submit {
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-submit:hover {
+  background-color: #000;
+}
+
+@media screen and (max-width: 768px) {
+  /* Table styles for smaller screens */
+  table {
+    font-size: 0.8rem;
+  }
+
+  th, td {
+    padding: 0.5rem;
+  }
+
+  /* Button styles for smaller screens */
+  button {
+    font-size: 0.8rem;
+  }
+}
+
+.btn-danger {
+  background-color: red;
+  color: white;
 }
