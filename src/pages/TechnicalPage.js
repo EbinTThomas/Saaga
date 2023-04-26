@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
 import { Container, Stack, Typography } from '@mui/material';
-import useAxiosPrivate from '../services/hooks/useAxiosPrivate';
+// import useAxiosPrivate from '../services/hooks/useAxiosPrivate';
 import axios from '../services/api/axios';
 import { ProductList } from '../sections/@dashboard/products';
 
@@ -22,8 +22,10 @@ export default function TechnicalPage() {
     setOpenFilter(false);
   };
 
+  const navigator = useNavigate()
+
   useEffect(() => {
-    axiosPrivate
+    axios
       .get(EVENTS_URL)
       .then((response) => {
         setEvents(response.data);

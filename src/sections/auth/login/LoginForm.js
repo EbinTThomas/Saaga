@@ -6,6 +6,9 @@ import { LoadingButton } from '@mui/lab';
 // components
 import axios from '../../../services/api/axios';
 import Iconify from '../../../components/iconify';
+import axios from '../../../services/api/axios';
+
+
 
 // ----------------------------------------------------------------------
 
@@ -17,68 +20,15 @@ export default function LoginForm() {
   const from = location.state?.from?.pathname || '/'
 
   const [showPassword, setShowPassword] = useState(false);
-  const [userName, setUsername] = useState('')
-  const [pwd, setPwd] = useState('')
-  const [errMsg, setErrMsg] = useState('')
 
-  const usernameRef = useRef()
-  const errRef = useRef()
-
-  const isAuthenticated = localStorage.getItem('isAuthenticated');
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate(from, { replace: true })
-    }
-    usernameRef.current.focus()
-  }, [from, isAuthenticated, navigate])
-
-  useEffect(() => {
-    setErrMsg('')
-  }, [userName, pwd])
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({
-          username: userName,
-          password: pwd,
-        }),
-        {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
-        },
-      )
-      const accessToken = response?.data?.access
-      
-      localStorage.setItem('access', accessToken)
-      localStorage.setItem('isAuthenticated', true)
-         
-      setUsername('')
-      setPwd('')
-      navigate(from, { replace: true })
-      console.log(accessToken)
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg('No server response')
-      } else if (err?.response?.status === 400) {
-        setErrMsg('Missing Username or Password')
-      } else if (err?.response?.status === 401) {
-        setErrMsg('Unauthorized')
-      } else {
-        setErrMsg('Login Failed')
-      }
-      // errRef.current.focus()
-      console.log(errMsg)
-    }
-  }
+  const handleClick = () => {
+    navigate('/dashboard', { replace: true });
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" onChange={(e) => setUsername(e.target.value)} ref={usernameRef} value={userName} required/>
+        <TextField name="email" label="Email address" />
 
         <TextField
           name="password"
@@ -95,7 +45,6 @@ export default function LoginForm() {
               </InputAdornment>
             ),
           }}
-          required
         />
       </Stack>
 
