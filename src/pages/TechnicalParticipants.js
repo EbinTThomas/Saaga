@@ -30,9 +30,9 @@ import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 // sections
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
+import axios from '../services/api/axios';
 // mock
 // import USERLIST from '../_mock/user';
-import useAxiosPrivate from '../services/hooks/useAxiosPrivate';
 
 
 // ----------------------------------------------------------------------
@@ -97,7 +97,6 @@ export default function TechnicalParticipants() {
   const [isLoading, setIsLoading] = useState(true);
   const [USERLIST, setUSERLIST] = useState([]);
   const [errMsg, setErrMsg] = useState('');
-  const axiosPrivate = useAxiosPrivate()
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
@@ -158,7 +157,7 @@ export default function TechnicalParticipants() {
   const isNotFound = !filteredUsers.length && !!filterName;
 
   useEffect(() => {
-    axiosPrivate
+    axios
       .get(TECH_PARTICIPANTS_URL)
       .then((response) => {
         setUSERLIST(response.data);

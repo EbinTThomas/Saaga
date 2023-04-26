@@ -24,7 +24,11 @@ export default function CulturalPage() {
 
   useEffect(() => {
     axios
-      .get(EVENTS_URL)
+      .get(EVENTS_URL,
+        {
+          headers: {Authorization: `Token ${localStorage.getItem('access')}`}
+        }
+      )
       .then((response) => {
         setEvents(response.data);
         setIsLoading(false);
