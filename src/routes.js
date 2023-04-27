@@ -12,6 +12,7 @@ import RegistrationPage from './pages/RegistrationPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import TechnicalParticipants from './pages/TechnicalParticipants';
 import ExpoPage from './pages/ExpoPage';
+import ParticipantPage from './pages/ParticipantPage';
 import RequireAuth from './components/auth/RequireAuth';
 
 // ----------------------------------------------------------------------
@@ -34,6 +35,7 @@ export default function Router() {
             { path: 'expo', element: <ExpoPage /> },
             { path: 'technical-participants/:id', element: <TechnicalParticipants /> },
             { path: 'register/:id', element: <RegistrationPage /> },
+            {path:'participants',element:<ParticipantPage/>}
           ],
         },
       ],

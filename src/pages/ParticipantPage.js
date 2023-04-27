@@ -23,16 +23,16 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
-// components
+// components:src/pages/ParticipantPage.js
 import { Link , useNavigate } from 'react-router-dom';
-import Label from '../../components/label';
-import Iconify from '../../components/iconify';
-import Scrollbar from '../../components/scrollbar/Scrollbar'
+import Iconify from '../components/iconify';
+import Scrollbar from '../components/scrollbar';
+import Label from '../components/label/Label';
 // sections
-import { UserListHead, UserListToolbar } from '../../sections/@dashboard/user';
-// mock
+import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
+// mocksrc/pages/ParticipantPage.js
 // import USERLIST from '../_mock/user';
-import axios from '../../services/api/axios';
+import axios from '../services/api/axios';
 
 
 // ----------------------------------------------------------------------
