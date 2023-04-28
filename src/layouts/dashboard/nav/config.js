@@ -19,7 +19,7 @@ const navConfig = [
   {
     title: 'technical events',
     path: '/dashboard/technical',
-    icon: icon('ic_cart'),
+    icon: icon('ic_blog'),
   },
   {
     title: 'cultural events',
@@ -30,7 +30,7 @@ const navConfig = [
     title: 'expo',
     path: '/dashboard/expo',
     icon: icon('ic_blog'),
-  }
+  },
   // {
   //   title: 'login',
   //   path: '/login',
