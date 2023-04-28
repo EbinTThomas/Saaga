@@ -177,12 +177,12 @@ export default function ParticipantPage() {
           <Typography variant="h4" gutterBottom>
             Participants
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             <Link to={'/dashboard/register'} style={{
               textDecoration: "none",
               color: "white"
             }}>New Registration</Link>
-          </Button>
+          </Button> */}
         </Stack>
 
         <Card>
