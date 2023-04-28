@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import '../styles/RegistrationPage.css';
 import axios from '../services/api/axios';
 
-const EXPO_URL = '/event/expo/';
+const EXPO_URL = '/event/expo-reg/';
 
 function RegistrationPage() {
   const { id } = useParams();
