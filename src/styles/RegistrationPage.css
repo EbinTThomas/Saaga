@@ -113,13 +113,13 @@ button {
 }
 
 .successMsg {
-  max-width: 250px;
-  padding: 10px 20px;
+  width: fit-content;
+  padding: 0.5rem 1rem;
   margin: 10px 0;
   background-color: #28a746b1;
   color: #fff;
   border: 1px solid #28a745;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 14px;
 }
 
@@ -128,12 +128,12 @@ button {
 }
 
 .errMsg {
-  max-width: 250px;
-  padding: 10px 20px;
+  width: fit-content;
+  padding: 0.5rem 1rem;
   margin: 10px 0;
   background-color: #dc3546b1;
   color: #fff;
   border: 1px solid #dc3545;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 14px;
 }

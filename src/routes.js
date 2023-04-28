@@ -10,7 +10,6 @@ import TechnicalPage from './pages/TechnicalPage';
 import CulturalPage from './pages/CulturalPage';
 import RegistrationPage from './pages/RegistrationPage';
 import DashboardAppPage from './pages/DashboardAppPage';
-import TechnicalParticipants from './pages/TechnicalParticipants';
 import ExpoPage from './pages/ExpoPage';
 import RequireAuth from './components/auth/RequireAuth';
 
@@ -28,11 +27,9 @@ export default function Router() {
           children: [
             { element: <Navigate to="/dashboard/app" />, index: true },
             { path: 'app', element: <DashboardAppPage /> },
-            { path: 'user', element: <UserPage /> },
             { path: 'technical', element: <TechnicalPage /> },
             { path: 'cultural', element: <CulturalPage /> },
             { path: 'expo', element: <ExpoPage /> },
-            { path: 'technical-participants/:id', element: <TechnicalParticipants /> },
             { path: 'register/:id', element: <RegistrationPage /> },
           ],
         },

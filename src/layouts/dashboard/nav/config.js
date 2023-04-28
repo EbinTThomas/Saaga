@@ -30,7 +30,7 @@ const navConfig = [
     title: 'expo',
     path: '/dashboard/expo',
     icon: icon('ic_blog'),
-  },
+  }
   // {
   //   title: 'login',
   //   path: '/login',

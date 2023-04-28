@@ -25,12 +25,12 @@ import {
   TablePagination,
 } from '@mui/material';
 // components
-import Label from '../components/label';
-import Iconify from '../components/iconify';
-import Scrollbar from '../components/scrollbar';
+import Label from '../../components/label';
+import Iconify from '../../components/iconify';
+import Scrollbar from '../../components/scrollbar';
 // sections
-import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
-import axios from '../services/api/axios';
+import { UserListHead, UserListToolbar } from '../../sections/@dashboard/user';
+import axios from '../../services/api/axios';
 // mock
 // import USERLIST from '../_mock/user';
 
@@ -77,7 +77,7 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function TechnicalParticipants() {
+export default function RegistrationsPage() {
   const { id } = useParams();
   const [open, setOpen] = useState(null);
 
