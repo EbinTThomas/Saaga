@@ -20,10 +20,8 @@ export default function LoginForm() {
   const [userName, setUsername] = useState('')
   const [pwd, setPwd] = useState('')
   const [errMsg, setErrMsg] = useState('')
-  const [falseCredStatus, setFalseCredStatus] = useState(false);
 
   const usernameRef = useRef()
-  const errRef = useRef()
 
   const isAuthenticated = localStorage.getItem('isAuthenticated');
 
@@ -63,14 +61,12 @@ export default function LoginForm() {
       if (!err?.response) {
         setErrMsg('No server response')
       } else if (err?.response?.status === 400) {
-        setErrMsg('Missing Username or Password');
-        setFalseCredStatus(true)
+        setErrMsg('Invalid username or password');
       } else if (err?.response?.status === 401) {
         setErrMsg('Unauthorized')
       } else {
         setErrMsg('Login Failed')
       }
-      // errRef.current.focus()
       console.log(errMsg)
     }
   }
@@ -79,8 +75,8 @@ export default function LoginForm() {
     <form onSubmit={handleSubmit}>
 
       <Stack spacing={3}>
-        {falseCredStatus && <div>
-          <Alert severity="error">Invalid username or password</Alert>
+        {errMsg && <div>
+          <Alert severity="error">{errMsg}</Alert>
         </div>}
         <TextField name="email" label="Email address" onChange={(e) => setUsername(e.target.value)} ref={usernameRef} value={userName} required />
 

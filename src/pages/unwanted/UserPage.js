@@ -9,7 +9,6 @@ import {
   Table,
   Stack,
   Paper,
-  Avatar,
   Button,
   Popover,
   Checkbox,
@@ -25,7 +24,6 @@ import {
 } from '@mui/material';
 // components
 import { Link , useNavigate } from 'react-router-dom';
-import Label from '../../components/label';
 import Iconify from '../../components/iconify';
 import Scrollbar from '../../components/scrollbar/Scrollbar'
 // sections

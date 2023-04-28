@@ -31,6 +31,11 @@ const navConfig = [
     path: '/dashboard/expo',
     icon: icon('ic_blog'),
   },
+  {
+    title: 'Participant List',
+    path: '/dashboard/participants',
+    icon: icon('ic_blog'),
+  },
   // {
   //   title: 'login',
   //   path: '/login',

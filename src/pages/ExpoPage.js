@@ -1,27 +1,42 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../styles/RegistrationPage.css';
 import axios from '../services/api/axios';
 
-const EXPO_URL = '/event/expo/'
+const EXPO_URL = '/event/expo/';
 
 function RegistrationPage() {
   const { id } = useParams();
 
-  const [project, setProject] = useState(
-    { project_title: '', space_required: '', participants: [] },
-  );
+  const [project, setProject] = useState({ project_title: '', space_required: '', department: '', participants: [] });
 
   const [students, setStudents] = useState([
     { name: '', ktu_id: '', gender: '', phone: '', accommodation1: false, accommodation2: false },
   ]);
+
+  const [dept, setDept] = useState('');
+  const [otherDepartment, setOtherDepartment] = useState(false);
 
   const [successMsg, setSuccessMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
 
   const handleProjectInputChange = (e) => {
     const { name, value } = e.target;
-    setProject({ ...project, [name]: value })
+    if (name === 'department') {
+      if (value === 'Other') {
+        setOtherDepartment(true);
+        setDept('')
+      } else {
+        setOtherDepartment(false);
+        setDept(value)
+      }
+    }
+    else if (name === 'otherDepartment') {
+      setDept(value);
+    }
+    else {
+      setProject({ ...project, [name]: value });
+    }
   };
 
   const handleInputChange = (e, index) => {
@@ -56,15 +71,19 @@ function RegistrationPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ ...project, participants: students })
+    console.log({ ...project, department: dept, participants: students });
     if (validateForm()) {
       axios
-        .post(EXPO_URL, { ...project, participants: students }, {
-          headers: { Authorization: `Token ${localStorage.getItem('access')}` },
-        })
+        .post(
+          EXPO_URL,
+          { ...project, department: dept, participants: students },
+          {
+            headers: { Authorization: `Token ${localStorage.getItem('access')}` },
+          }
+        )
         .then((res) => {
           setStudents([{ name: '', ktu_id: '', gender: '', phone: '', accommodation1: false, accommodation2: false }]);
-          setProject({ project_title: '', space_required: '', participants: [] })
+          setProject({ project_title: '', space_required: '', department: '', participants: [] });
           setSuccessMsg('Registered Successfully!');
         })
         .catch((err) => setErrMsg(`Couldn't Register!`));
@@ -75,7 +94,12 @@ function RegistrationPage() {
 
   const validateForm = () => {
     let isValid = true;
-    if (project.project_title === '' || project.space_required === '' || students.length === 0) {
+    if (
+      project.project_title === '' ||
+      project.space_required === '' ||
+      dept === '' ||
+      students.length === 0
+    ) {
       isValid = false;
     }
     students.forEach((student) => {
@@ -95,6 +119,8 @@ function RegistrationPage() {
           <tr>
             <th>Project Title</th>
             <th>Space Required</th>
+            <th>Department</th>
+            {otherDepartment && <th>Enter Your Department</th>}
           </tr>
           <tr>
             <td htmlFor="project_title">
@@ -117,6 +143,44 @@ function RegistrationPage() {
                 required
               />
             </td>
+            <td htmlFor="department">
+              <select id="department" name="department" onChange={(e) => handleProjectInputChange(e)} required>
+                <option value="">Select Department</option>
+                <option value="AE">Aeronautical Engineering</option>
+                <option value="AEI">Applied Electronics and Instrumentation Engineering</option>
+                <option value="AU">Automobile Engineering</option>
+                <option value="BT">Biotechnology</option>
+                <option value="BME">Biomedical Engineering</option>
+                <option value="CE">Civil Engineering</option>
+                <option value="CSE">Computer Science and Engineering</option>
+                <option value="EBE">Electronics & Biomedical Engineering</option>
+                <option value="ECE">Electronics and Communication Engineering</option>
+                <option value="EEE">Electrical and Electronics Engineering</option>
+                <option value="FT">Food Technology</option>
+                <option value="ICE">Instrumentation and Control Engineering</option>
+                <option value="IE">Industrial Engineering</option>
+                <option value="IT">Information Technology</option>
+                <option value="ME">Mechanical Engineering</option>
+                <option value="MT">Mechatronics</option>
+                <option value="MTY">Metallurgy</option>
+                <option value="NA">Naval Architecture & Ship Building Engg</option>
+                <option value="PE">Production Engineering</option>
+                <option value="PE">Polymer Engineering</option>
+                <option value="SFE">Safety and Fire Engineering</option>
+                <option value="Other">Other</option>
+              </select>
+            </td>
+            {otherDepartment && (
+              <td>
+                <input
+                  type="text"
+                  id="otherDepartment"
+                  name="otherDepartment"
+                  onChange={(e) => handleProjectInputChange(e)}
+                  required
+                />
+              </td>
+            )}
           </tr>
           <tr>
             <th>Name</th>
