@@ -7,7 +7,7 @@ import axios from '../services/api/axios';
 import { ProductList } from '../sections/@dashboard/products';
 
 
-const EVENTS_URL = '/event/expo/'
+const EVENTS_URL = '/event/expo-reg/'
 
 export default function ExpoPage() {
   const [openFilter, setOpenFilter] = useState(false);
