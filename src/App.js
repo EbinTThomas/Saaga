@@ -7,22 +7,20 @@ import ThemeProvider from './theme';
 // components
 import { StyledChart } from './components/chart';
 import ScrollToTop from './components/scroll-to-top';
-import AuthState from './context/authentication/AuthState'
+import RequireAuth from './components/auth/RequireAuth';
 
 // ----------------------------------------------------------------------
 
 export default function App() {
   return (
-    <AuthState>
     <HelmetProvider>
       <BrowserRouter>
         <ThemeProvider>
           <ScrollToTop />
           <StyledChart />
-          <Router />  
+          <Router />
         </ThemeProvider>
       </BrowserRouter>
     </HelmetProvider>
-    </AuthState>
   );
 }

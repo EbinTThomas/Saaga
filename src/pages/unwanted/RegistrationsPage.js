@@ -25,12 +25,12 @@ import {
   TablePagination,
 } from '@mui/material';
 // components
-import Label from '../components/label';
-import Iconify from '../components/iconify';
-import Scrollbar from '../components/scrollbar';
+import Label from '../../components/label';
+import Iconify from '../../components/iconify';
+import Scrollbar from '../../components/scrollbar';
 // sections
-import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
-import axios from '../services/api/axios';
+import { UserListHead, UserListToolbar } from '../../sections/@dashboard/user';
+import axios from '../../services/api/axios';
 // mock
 // import USERLIST from '../_mock/user';
 
@@ -42,7 +42,7 @@ const TABLE_HEAD = [
   { id: 'ktu_id', label: 'KTU ID', alignRight: false },
   { id: 'gender', label: 'Gender', alignRight: false },
   { id: 'mobile', label: 'Mobile', alignRight: false },
-  { id: 'accomodation', label: 'Accomodation', alignRight: false },
+  { id: 'accommodation', label: 'Accommodation', alignRight: false },
   { id: '' },
 ];
 
@@ -77,7 +77,7 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function TechnicalParticipants() {
+export default function RegistrationsPage() {
   const { id } = useParams();
   const [open, setOpen] = useState(null);
 
@@ -175,7 +175,8 @@ export default function TechnicalParticipants() {
                 'phone': '1234567890',
                 'name': "Jessica Jones",
                 'ktuid': "jj56789",
-                'accomodation': "july1"
+                'accommodation1': "May 3",
+                'accommodation2': "May 4"
                 },
 
         ])
@@ -219,7 +220,7 @@ export default function TechnicalParticipants() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, ktuid, accomodation, gender, phone } = row;
+                    const { id, name, ktuid, college, accommodation1, accommodation2, gender, phone } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -243,7 +244,7 @@ export default function TechnicalParticipants() {
                         <TableCell align="left">{phone}</TableCell>
 
                         <TableCell align="left">
-                          <Label>{sentenceCase(accomodation)}</Label>
+                          <Label>{sentenceCase(accommodation1)}{sentenceCase(accommodation2)}</Label>
                         </TableCell>
 
                         <TableCell align="right">

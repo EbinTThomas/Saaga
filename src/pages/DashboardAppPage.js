@@ -1,24 +1,12 @@
-import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
-// components
-import Iconify from '../components/iconify';
 
 // sections
 import {
-  AppTasks,
-  AppNewsUpdate,
-  AppOrderTimeline,
-  AppCurrentVisits,
-  AppWebsiteVisits,
-  AppTrafficBySite,
-  AppWidgetSummary,
-  AppCurrentSubject,
-  AppConversionRates,
+  AppWidgetSummary
 } from '../sections/@dashboard/app';
 
 // ----------------------------------------------------------------------
@@ -27,20 +15,10 @@ export default function DashboardAppPage() {
   const theme = useTheme();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
-    if (isAuthenticated === 'false') {
-      navigate(
-        '/login',
-        { replace: true },
-      )
-    }
-  }, [])
-
   return (
     <>
       <Helmet>
-        <title> Dashboard | Overwiew </title>
+        <title> Dashboard | Overview </title>
       </Helmet>
 
       <Container maxWidth="xl">

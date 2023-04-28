@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom'
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
+import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Alert } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import axios from '../../../services/api/axios';
@@ -22,12 +22,11 @@ export default function LoginForm() {
   const [errMsg, setErrMsg] = useState('')
 
   const usernameRef = useRef()
-  const errRef = useRef()
 
   const isAuthenticated = localStorage.getItem('isAuthenticated');
 
   useEffect(() => {
-    if (isAuthenticated==='true') {
+    if (isAuthenticated === 'true') {
       navigate(from, { replace: true })
     }
     usernameRef.current.focus()
@@ -51,10 +50,10 @@ export default function LoginForm() {
         },
       )
       const accessToken = response?.data?.auth_token
-      
+
       localStorage.setItem('access', accessToken)
       localStorage.setItem('isAuthenticated', true)
-         
+
       setUsername('')
       setPwd('')
       navigate(from, { replace: true })
@@ -62,21 +61,24 @@ export default function LoginForm() {
       if (!err?.response) {
         setErrMsg('No server response')
       } else if (err?.response?.status === 400) {
-        setErrMsg('Missing Username or Password')
+        setErrMsg('Invalid username or password');
       } else if (err?.response?.status === 401) {
         setErrMsg('Unauthorized')
       } else {
         setErrMsg('Login Failed')
       }
-      // errRef.current.focus()
       console.log(errMsg)
     }
   }
 
   return (
     <form onSubmit={handleSubmit}>
+
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" onChange={(e) => setUsername(e.target.value)} ref={usernameRef} value={userName} required/>
+        {errMsg && <div>
+          <Alert severity="error">{errMsg}</Alert>
+        </div>}
+        <TextField name="email" label="Email address" onChange={(e) => setUsername(e.target.value)} ref={usernameRef} value={userName} required />
 
         <TextField
           name="password"

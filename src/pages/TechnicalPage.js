@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Container, Stack, Typography } from '@mui/material';
+import { Container, Stack, Typography, TextField } from '@mui/material';
 import axios from '../services/api/axios';
 import { ProductList } from '../sections/@dashboard/products';
 
@@ -9,31 +8,11 @@ import { ProductList } from '../sections/@dashboard/products';
 const EVENTS_URL = '/event/technical/'
 
 export default function TechnicalPage() {
-  const [openFilter, setOpenFilter] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [events, setEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
   const [errMsg, setErrMsg] = useState('');
-
-  const handleOpenFilter = () => {
-    setOpenFilter(true);
-  };
-
-  const handleCloseFilter = () => {
-    setOpenFilter(false);
-  };
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
-    console.log(isAuthenticated)
-    if (isAuthenticated === 'false') {
-      navigate(
-        '/login',
-        { replace: true },
-      )
-    }
-  }, [])
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     axios
@@ -45,6 +24,7 @@ export default function TechnicalPage() {
       )
       .then((response) => {
         setEvents(response.data);
+        setFilteredEvents(response.data);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -52,6 +32,15 @@ export default function TechnicalPage() {
         setIsLoading(false);
       });
   }, []);
+
+  const handleSearch = (event) => {
+    const searchVal = event.target.value;
+    setSearchValue(searchVal);
+    const filtered = events.filter((event) =>
+      event.name.toLowerCase().includes(searchVal.toLowerCase())
+    );
+    setFilteredEvents(filtered);
+  };
 
   return (
     <>
@@ -64,7 +53,16 @@ export default function TechnicalPage() {
           Technical Events
         </Typography>
 
-        <ProductList products={events} />
+        <TextField
+          label="Search Events"
+          variant="outlined"
+          fullWidth
+          value={searchValue}
+          onChange={handleSearch}
+          sx={{ mb: 3 }}
+        />
+
+        <ProductList products={filteredEvents} />
       </Container>
     </>
   );

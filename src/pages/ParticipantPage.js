@@ -1,8 +1,9 @@
+
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
-// @mui
+import { useEffect, useState } from 'react';
+
 import {
   Card,
   Table,
@@ -22,15 +23,16 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
-// components
-import { Link } from 'react-router-dom';
-import Label from '../components/label';
+// components:src/pages/ParticipantPage.js
+import { Link , useNavigate } from 'react-router-dom';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
+import Label from '../components/label/Label';
 // sections
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
-// mock
-import USERLIST from '../_mock/user';
+// mocksrc/pages/ParticipantPage.js
+// import USERLIST from '../_mock/user';
+import axios from '../services/api/axios';
 
 
 // ----------------------------------------------------------------------
@@ -38,10 +40,9 @@ import USERLIST from '../_mock/user';
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
   { id: 'ktu_id', label: 'KTU ID', alignRight: false },
-  { id: 'gender', label: 'Gender', alignRight: false },
   { id: 'mobile', label: 'Mobile', alignRight: false },
-  { id: 'accomodation', label: 'Accomodation', alignRight: false },
-  {id:'dates',label:"Dates",alignRight:false},
+  { id: 'gender', label: 'Gender', alignRight: false },
+  {id:'accomodation',label:"Accomodation",alignRight:false},
   { id: '' },
 ];
 
@@ -76,7 +77,23 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function UserPage() {
+export default function ParticipantPage() {
+
+  const [USERLIST, setUSERLIST] = useState([])
+  
+  const navigator = useNavigate()
+
+  useEffect(() => {
+    axios.get("/event/students",{
+      headers: {Authorization: `Token ${localStorage.getItem('access')}`}
+    })
+    .then(res => setUSERLIST(res.data))
+    .catch(err => {
+      console.log(err)
+      navigator("/login")
+    })
+  }, [])
+
   const [open, setOpen] = useState(null);
 
   const [page, setPage] = useState(0);
@@ -160,12 +177,12 @@ export default function UserPage() {
           <Typography variant="h4" gutterBottom>
             Participants
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             <Link to={'/dashboard/register'} style={{
               textDecoration: "none",
               color: "white"
             }}>New Registration</Link>
-          </Button>
+          </Button> */}
         </Stack>
 
         <Card>
@@ -185,7 +202,10 @@ export default function UserPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
+                    
+                    const { id, name, phone, gender, accomodation1,accomodation2 } = row;
+                    console.log(accomodation1)
+                    const ktuId = row.ktu_id;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -196,22 +216,22 @@ export default function UserPage() {
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
                             <Typography variant="subtitle2" noWrap>
                               {name}
                             </Typography>
                           </Stack>
                         </TableCell>
 
-                        <TableCell align="left">{company}</TableCell>
+                        <TableCell align="left">{ktuId}</TableCell>
 
-                        <TableCell align="left">{role}</TableCell>
+                        <TableCell align="left">{phone}</TableCell>
 
-                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                        <TableCell align="left">{gender}</TableCell>
 
-                        <TableCell align="left">
+                        <TableCell align='left'>{(accomodation1 && accomodation2)?"Both Days":accomodation1?"May 3":accomodation2?"May 4":"Not needed"}</TableCell>
+                        {/* <TableCell align="left">
                           <Label color={(status === 'banned' && 'error') || 'success'}>{sentenceCase(status)}</Label>
-                        </TableCell>
+                        </TableCell> */}
 
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
