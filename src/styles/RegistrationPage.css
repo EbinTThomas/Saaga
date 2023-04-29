@@ -43,6 +43,7 @@ td input[type="text"], select {
   box-shadow: none;
   margin-bottom: 0.5rem;
   font-size: 14px;
+  min-width: 200px;
 }
 
 td input[type="tel"],
@@ -54,6 +55,7 @@ td input[type="number"] {
   box-shadow: none;
   margin-bottom: 0.5rem;
   font-size: 14px;
+  min-width: 200px;
 }
 
 label {

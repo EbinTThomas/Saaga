@@ -1,4 +1,3 @@
-
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
@@ -24,7 +23,7 @@ import {
   TablePagination,
 } from '@mui/material';
 // components:src/pages/ParticipantPage.js
-import { Link , useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 import Label from '../components/label/Label';
@@ -34,7 +33,6 @@ import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
 // import USERLIST from '../_mock/user';
 import axios from '../services/api/axios';
 
-
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -42,7 +40,7 @@ const TABLE_HEAD = [
   { id: 'ktu_id', label: 'KTU ID', alignRight: false },
   { id: 'mobile', label: 'Mobile', alignRight: false },
   { id: 'gender', label: 'Gender', alignRight: false },
-  {id:'accomodation',label:"Accomodation",alignRight:false},
+  { id: 'accomodation', label: 'Accomodation', alignRight: false },
   { id: '' },
 ];
 
@@ -78,21 +76,21 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function ParticipantPage() {
+  const [USERLIST, setUSERLIST] = useState([]);
 
-  const [USERLIST, setUSERLIST] = useState([])
-  
-  const navigator = useNavigate()
+  const navigator = useNavigate();
 
   useEffect(() => {
-    axios.get("/event/students",{
-      headers: {Authorization: `Token ${localStorage.getItem('access')}`}
-    })
-    .then(res => setUSERLIST(res.data))
-    .catch(err => {
-      console.log(err)
-      navigator("/login")
-    })
-  }, [])
+    axios
+      .get('/event/students', {
+        headers: { Authorization: `Token ${localStorage.getItem('access')}` },
+      })
+      .then((res) => setUSERLIST(res.data))
+      .catch((err) => {
+        console.log(err);
+        navigator('/login');
+      });
+  }, []);
 
   const [open, setOpen] = useState(null);
 
@@ -202,9 +200,8 @@ export default function ParticipantPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    
-                    const { id, name, phone, gender, accomodation1,accomodation2 } = row;
-                    console.log(accomodation1)
+                    const { id, name, phone, gender, accomodation1, accomodation2 } = row;
+                    console.log(accomodation1);
                     const ktuId = row.ktu_id;
                     const selectedUser = selected.indexOf(name) !== -1;
 
@@ -228,7 +225,15 @@ export default function ParticipantPage() {
 
                         <TableCell align="left">{gender}</TableCell>
 
-                        <TableCell align='left'>{(accomodation1 && accomodation2)?"Both Days":accomodation1?"May 3":accomodation2?"May 4":"Not needed"}</TableCell>
+                        <TableCell align="left">
+                          {accomodation1 && accomodation2
+                            ? 'Both Days'
+                            : accomodation1
+                            ? 'May 3'
+                            : accomodation2
+                            ? 'May 4'
+                            : 'Not needed'}
+                        </TableCell>
                         {/* <TableCell align="left">
                           <Label color={(status === 'banned' && 'error') || 'success'}>{sentenceCase(status)}</Label>
                         </TableCell> */}

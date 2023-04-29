@@ -1,14 +1,12 @@
-import { React, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { React, useState } from 'react';
 import '../styles/RegistrationPage.css';
 import axios from '../services/api/axios';
 
-const EXPO_URL = '/event/expo/';
+const EXPO_URL = '/event/expo-reg/';
 
 function RegistrationPage() {
-  const { id } = useParams();
 
-  const [project, setProject] = useState({ project_title: '', space_required: '', department: '', participants: [] });
+  const [project, setProject] = useState({ title: '', space_required: '', department: '', participants: [] });
 
   const [students, setStudents] = useState([
     { name: '', ktu_id: '', gender: '', phone: '', accommodation1: false, accommodation2: false },
@@ -71,7 +69,7 @@ function RegistrationPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ ...project, department: dept, participants: students });
+    // console.log(JSON.stringify({ ...project, department: dept, participants: students }));
     if (validateForm()) {
       axios
         .post(
@@ -83,7 +81,7 @@ function RegistrationPage() {
         )
         .then((res) => {
           setStudents([{ name: '', ktu_id: '', gender: '', phone: '', accommodation1: false, accommodation2: false }]);
-          setProject({ project_title: '', space_required: '', department: '', participants: [] });
+          setProject({ title: '', space_required: '', department: '', participants: [] });
           setSuccessMsg('Registered Successfully!');
         })
         .catch((err) => setErrMsg(`Couldn't Register!`));
@@ -95,7 +93,7 @@ function RegistrationPage() {
   const validateForm = () => {
     let isValid = true;
     if (
-      project.project_title === '' ||
+      project.title === '' ||
       project.space_required === '' ||
       dept === '' ||
       students.length === 0
@@ -123,12 +121,12 @@ function RegistrationPage() {
             {otherDepartment && <th>Enter Your Department</th>}
           </tr>
           <tr>
-            <td htmlFor="project_title">
+            <td htmlFor="title">
               <input
                 type="text"
-                id="project_title"
-                name="project_title"
-                value={project.project_title}
+                id="title"
+                name="title"
+                value={project.title}
                 onChange={(e) => handleProjectInputChange(e)}
                 required
               />
