@@ -81,7 +81,8 @@ function RegistrationPage() {
         )
         .then((res) => {
           setStudents([{ name: '', ktu_id: '', gender: '', phone: '', accommodation1: false, accommodation2: false }]);
-          setProject({ title: '', space_required: '', department: '', participants: [] });
+          setProject({ title: '', space_required: '', participants: [] });
+          setDept('');
           setSuccessMsg('Registered Successfully!');
         })
         .catch((err) => setErrMsg(`Couldn't Register!`));
@@ -142,7 +143,7 @@ function RegistrationPage() {
               />
             </td>
             <td htmlFor="department">
-              <select id="department" name="department" onChange={(e) => handleProjectInputChange(e)} required>
+              <select id="department" name="department" onChange={(e) => handleProjectInputChange(e)} value={dept} required>
                 <option value="">Select Department</option>
                 <option value="AE">Aeronautical Engineering</option>
                 <option value="AEI">Applied Electronics and Instrumentation Engineering</option>
@@ -174,6 +175,7 @@ function RegistrationPage() {
                   type="text"
                   id="otherDepartment"
                   name="otherDepartment"
+                  value={dept}
                   onChange={(e) => handleProjectInputChange(e)}
                   required
                 />
